@@ -51,9 +51,26 @@ namespace ClassLibrary2.Services
         }
 
         public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity,bool>> where=null,Func<IQueryable<TEntity>,
-                                                IOrderedQueryable<TEntity>> orderby=null)
-        { 
-        
+                                                IOrderedQueryable<TEntity>> orderby=null,string includes="" )
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (where != null)
+            { 
+                  query = query.Where(where);
+            }
+
+            if (orderby != null)
+            {
+                query = orderby(query);
+            }
+            if (includes != "")
+            {
+                foreach (var include in includes.Split(','))
+                {
+                    query = query.Include(include);
+                }
+            }
+            return query.ToList();
         }
 
 

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MyContext.cs" />
+    <Compile Include="Context\UnitOfWork.cs" />
     <Compile Include="Migrations\202502270722353_T1.cs" />
     <Compile Include="Migrations\202502270722353_T1.Designer.cs">
       <DependentUpon>202502270722353_T1.cs</DependentUpon>
